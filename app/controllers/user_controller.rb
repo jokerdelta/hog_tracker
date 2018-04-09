@@ -52,5 +52,3 @@ class UserController < ApplicationController
   end
 
 end
-
-end
