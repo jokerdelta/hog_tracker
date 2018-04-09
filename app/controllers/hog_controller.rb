@@ -1,0 +1,4 @@
+class HogController < ApplicationController
+
+
+end
