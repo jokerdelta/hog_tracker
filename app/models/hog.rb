@@ -1,5 +1,6 @@
 class Hog < ActiveRecord::Base
   belongs_to :user
+  has_one :weight
 
   def slug
     self.username.to_s.downcase.gsub(" ","-")

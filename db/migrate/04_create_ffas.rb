@@ -1,4 +1,4 @@
-class CreateFFAs < ActiveRecord::Migration
+class CreateFfas < ActiveRecord::Migration
   def change
       create_table :FFAs do |t|
         t.string :chapter

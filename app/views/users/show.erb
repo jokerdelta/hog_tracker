@@ -1,0 +1,109 @@
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<%@user.hogs.each do |hog|%>
+<h2>Weekly Weights  For <%= hog.name %>, <%=Date.today.year%>.</h2>
+<table>
+  <tr>
+    <th>
+      10 January
+      61-121
+    </th>
+    <th>
+      17 January
+      73 - 133
+    </th>
+    <th>
+      24 January
+      84- 144
+    </th>
+    <th>
+      31 January
+      95 - 155
+    </th>
+    <th>
+      7 February
+      107 - 167
+    </th>
+    <th>
+      14 February
+      118 - 178
+    </th>
+    <th>
+      21 February
+      129 - 189
+    </th>
+    <th>
+      28 February
+      140 - 200
+    </th>
+    <th>
+      7 March
+      152 - 212
+    </th>
+    <th>
+    14 March
+    163 - 224
+    </th>
+    <th>
+    21 March
+    174 - 234
+    </th>
+    <th>
+    28 March
+    186 - 246
+    </th>
+    <th>
+      4 April
+      197 - 257
+    </th>
+    <th>
+    11 April
+    208 - 268
+  </th>
+    <th>
+    18 April
+    225 - 285
+  </th>
+  </tr>
+
+  <tr>
+    <td><%=hog.weight.week_1%></td>
+    <td><%=hog.weight.week_2%></td>
+    <td><%=hog.weight.week_3%></td>
+    <td><%=hog.weight.week_4%></td>
+    <td><%=hog.weight.week_5%></td>
+    <td><%=hog.weight.week_6%></td>
+    <td><%=hog.weight.week_7%></td>
+    <td><%=hog.weight.week_8%></td>
+    <td><%=hog.weight.week_9%></td>
+    <td><%=hog.weight.week_10%></td>
+    <td><%=hog.weight.week_11%></td>
+    <td><%=hog.weight.week_12%></td>
+    <td><%=hog.weight.week_13%></td>
+    <td><%=hog.weight.week_14%></td>
+    <td><%=hog.weight.week_15%></td>
+  </tr>
+</table>
+<%end%>
+<h2>Remember Spring Fair is on <%=@user.fair_date%>!</h2>
+</body>
+</html>
