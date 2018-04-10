@@ -5,6 +5,15 @@ class UserController < ApplicationController
     erb :'users/show'
   end
 
+  get '/users/:id/show' do
+    @user = User.find by(id: params[:id])
+      if  logged_in? == false || current_user.id != @user.id
+    erb :'users/login'
+    else
+      erb :'/users/show'
+    end
+  end
+
   get '/signup' do
         if logged_in? == false
         erb :'/users/create_user'
@@ -18,7 +27,7 @@ class UserController < ApplicationController
         if @user.valid? && logged_in? == false
           @user.save
           session[:user_id] = @user.id
-          redirect to '/hogs'
+          redirect to "/users/#{@user.id}/show"
       else
           redirect to '/signup'
       end
@@ -36,7 +45,7 @@ class UserController < ApplicationController
      @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect to '/hogs'
+        redirect to "/users/#{@user.id}/show"
       else
         redirect to '/signup'
       end
@@ -50,5 +59,7 @@ class UserController < ApplicationController
       redirect to '/'
     end
   end
+
+
 
 end
