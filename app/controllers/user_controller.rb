@@ -1,3 +1,5 @@
+require 'pry'
+
 class UserController < ApplicationController
 
   get '/users/:slug' do
@@ -6,7 +8,7 @@ class UserController < ApplicationController
   end
 
   get '/users/:id/show' do
-    @user = User.find by(id: params[:id])
+    @user = User.find_by(id: params[:id])
       if  logged_in? == false || current_user.id != @user.id
     erb :'users/login'
     else
@@ -23,8 +25,9 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-      @user = User.new(username: params[:username], password: params[:password], email: params[:email])
-        if @user.valid? && logged_in? == false
+    binding.pry
+          @user = User.new(username: params[:username], password: params[:password], email: params[:email], fair_date: params[:fair_date])
+              if @user.valid? && logged_in? == false
           @user.save
           session[:user_id] = @user.id
           redirect to "/users/#{@user.id}/show"

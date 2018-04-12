@@ -20,7 +20,7 @@ tr:nth-child(even) {
 </head>
 <body>
 <%@user.hogs.each do |hog|%>
-<h2>Weekly Weights  For <%= hog.name %>, <%=Date.today.year%>.</h2>
+<h2>Weekly Weights  For <%= hog.name %>, <%=Date.today.year%>.</h2> # this could be a caption as well..
 <table>
   <tr>
     <th>
@@ -104,6 +104,6 @@ tr:nth-child(even) {
   </tr>
 </table>
 <%end%>
-<h2>Remember Spring Fair is on <%=@user.fair_date%>!</h2>
+<h2>Remember, your fair is on <%=@user.fair_date%>!</h2>
 </body>
 </html>

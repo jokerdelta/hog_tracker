@@ -14,8 +14,8 @@
     <div class="container">
       <h1>Welcome to Hog Tracker!</h1>
       <%if logged_in?%>
-          <a href="/hogs/new">Create Hog </a>
-          <a href= "/logout">Log Out</a>
+          <h3><a href="/hogs/new">Add Hog </a></h3>
+          <h3><a href= "/logout">Log Out</a></h3>
       <%end%>
       <%= yield %>
     </div>
