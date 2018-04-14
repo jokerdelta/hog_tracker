@@ -18,8 +18,9 @@
 		</style>
 	</head>
 <body>
+<h4>Welcome, <%=@user.username%>. Here are your hogs:</h4>
 <%@user.hogs.each do |hog|%>
-  <h5>Name: <%=hog.name%></h5>
+  <h5>Hog Name: <%=hog.name%></h5>
   <table>
         <tr>
       <th>
