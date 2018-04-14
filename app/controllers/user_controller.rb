@@ -2,11 +2,6 @@ require 'pry'
 
 class UserController < ApplicationController
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
-  end
-
   get '/users/:id/show' do
     @user = User.find_by(id: params[:id])
       if  logged_in? == false || current_user.id != @user.id
@@ -16,21 +11,50 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/:id/edit' do
+    if logged_in?
+      @user = User.find_by(id: params[:id])
+          if @user.id == current_user.id #only allow edit if current user is hogs owner
+              erb :'users/edit_user'
+          else
+            redirect to '/login'
+          end
+    else
+      redirect to '/login'
+    end
+  end
+
+  patch '/users/:id' do
+    if logged_in?
+        if params[:username] == "" # if username is blank, redirect back to edit page and do not save
+          redirect to "/users/#{params[:id]}/edit"
+        else
+          @user = User.find_by(id: params[:id])
+          @user.username = params[:username]
+          @user.email = params[:email]
+          @user.fair_date = params[:fair_date]
+          @user.save
+          redirect to "/users/#{@user.id}/show"
+      end
+    else
+      redirect to '/login'
+    end
+end
+
   get '/signup' do
         if logged_in? == false
         erb :'/users/create_user'
       else
-        redirect to '/hogs'
+        redirect to "/users/#{@user.id}/show"
       end
   end
 
   post '/signup' do
-    binding.pry
           @user = User.new(username: params[:username], password: params[:password], email: params[:email], fair_date: params[:fair_date])
               if @user.valid? && logged_in? == false
           @user.save
           session[:user_id] = @user.id
-          redirect to "/users/#{@user.id}/show"
+          redirect to  "/users/#{@user.id}/show"
       else
           redirect to '/signup'
       end
@@ -40,7 +64,7 @@ class UserController < ApplicationController
     if logged_in? == false
     erb :'users/login'
     else
-      redirect to '/hogs'
+      redirect to "/users/#{@user.id}/show"
     end
   end
 
