@@ -40,6 +40,7 @@
               <h1>Welcome to Hog Tracker</h1>
           <%if logged_in?%>
           <div class="topnav">
+            <a href = "/users/<%=current_user.id%>/show">Home </a>
               <a class= "active" href="/hogs/new">Add Hog </a>
               <a href="/hogs">View Hogs</a>
               <a href ="/users/<%=current_user.id%>/edit">Edit User</a>

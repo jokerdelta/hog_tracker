@@ -1,5 +1,13 @@
 class HogController < ApplicationController
 
+  get '/hogs/new' do
+    if logged_in?
+      @user = User.find_by(id: session[:user_id])
+      erb :'hogs/create_hog'
+    else
+      redirect to '/login'
+    end
+  end
 
   get '/hogs/:id' do
     if logged_in?
@@ -71,7 +79,6 @@ end
 get '/hogs' do
   if logged_in?
     @users = User.all
-    binding.pry
     erb :'hogs/hogs'
   else
     redirect to '/login'
@@ -94,13 +101,6 @@ post '/hogs' do
   end
 end
 
-get '/hogs/new' do
-  if logged_in?
-    @user = User.find_by(id: session[:user_id])
-    erb :'hogs/create_hog'
-  else
-    redirect to '/login'
-  end
-end
+
 
 end
