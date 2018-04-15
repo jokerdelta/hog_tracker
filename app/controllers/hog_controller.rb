@@ -67,12 +67,12 @@ delete'/hogs/:id/delete' do
   @hog = Hog.find_by(id: params[:id])
         if @hog.user_id == current_user.id # if current user is hogs owner, allow delete
           @hog.delete
-          redirect to '/hogs'
+          redirect to "/users/#{@hog.user_id}/show"
         else
-          redirect to '/hogs'
+          redirect to "/users/#{@hog.user_id}/show"
         end
   else
-    redirect to '/hogs'
+    redirect to '/login'
   end
 end
 

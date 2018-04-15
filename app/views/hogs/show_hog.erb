@@ -17,9 +17,10 @@
 
 		</style>
 	</head>
-<h5>Hog ID # <%=@hog.id%></h5>
+	<br>
+<!-- <h5>Hog ID # <%=@hog.id%></h5> -->
 <form action="/hogs/<%=@hog.id%>/edit" method="GET">
-  <h5>Name: <%=@hog.name%></h5>
+  <h5>Hog Name: <a href= "/hogs/<%=@hog.id%>/edit"><%=@hog.name%></a></h5>
   <table>
 		<tr>
 			<th>Week 1 (61-121)</th>
@@ -63,7 +64,7 @@
       <td><%=@hog.weight.week_14%></td>
       <td><%=@hog.weight.week_15%></td>
     </tr>
-  </table><br><br>
+  </table><br>
 	<input type="submit" value="Edit Hog">
 </form>
 </html>
