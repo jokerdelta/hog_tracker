@@ -34,6 +34,7 @@ class UserController < ApplicationController
           @user.email = params[:email]
           @user.fair_date = params[:fair_date]
           @user.save
+
           redirect to "/users/#{@user.id}/show"
       end
     else

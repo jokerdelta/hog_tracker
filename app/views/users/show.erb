@@ -21,7 +21,7 @@
 	<br>
 <h4>Welcome, <%=@user.username%>! Here are the hogs you're tracking:</h4><br>
 <%@user.hogs.each do |hog|%>
-  <h5>Hog Name: <%=hog.name%></h5>
+  <h5>Hog Name: <a href= "/hogs/<%=hog.id%>/edit"><%=hog.name%></a></h5>
   <table>
         <tr>
       <th>
