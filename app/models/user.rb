@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
     has_many :hogs
-    belongs_to :ffa
 
     validates :username, presence: true
     validates :email, presence: true
