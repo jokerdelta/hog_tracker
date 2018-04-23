@@ -32,7 +32,7 @@ class HogController < ApplicationController
   end
 
   patch '/hogs/:id' do
-    # raise params.inspect
+
     if logged_in?
         if params[:name] == "" # if hog name is blank, redirect back to edit page and do not save
           redirect to "hogs/#{params[:id]}/edit"
