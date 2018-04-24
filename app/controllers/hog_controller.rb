@@ -24,7 +24,7 @@ class HogController < ApplicationController
            if @hog.user_id == current_user.id #only allow edit if current user is hogs owner
               erb :'hogs/edit_hog'
            else
-             redirect to "/users/#{@hog.user_id}/show"
+             redirect to "/users/#{@hog.user_id}"
            end
      else
        redirect to '/login'
@@ -39,25 +39,10 @@ class HogController < ApplicationController
         else
           @hog = Hog.find_by(id: params[:id])
           @hog.name = params[:name]
-          @hog.weight.update(params[:weight]) #there is a problem here!
-          # @hog.weight.week_1 = params[:week_1]
-          # @hog.weight.week_2 = params[:week_2]
-          # @hog.weight.week_3 = params[:week_3]
-          # @hog.weight.week_4 = params[:week_4]
-          # @hog.weight.week_5 = params[:week_5]
-          # @hog.weight.week_6 = params[:week_6]
-          # @hog.weight.week_7 = params[:week_7]
-          # @hog.weight.week_8 = params[:week_8]
-          # @hog.weight.week_9 = params[:week_9]
-          # @hog.weight.week_10 = params[:week_10]
-          # @hog.weight.week_11 = params[:week_11]
-          # @hog.weight.week_12 = params[:week_12]
-          # @hog.weight.week_13 = params[:week_13]
-          # @hog.weight.week_14 = params[:week_14]
-          # @hog.weight.week_15 = params[:week_15]
+          @hog.weight.update(params[:weight])
           @hog.weight.save
           @hog.save
-          redirect to "/users/#{@hog.user_id}/show"
+          redirect to "/users/#{@hog.user_id}"
       end
     else
       redirect to '/login'
@@ -69,9 +54,9 @@ delete'/hogs/:id/delete' do
   @hog = Hog.find_by(id: params[:id])
          if @hog.user_id == current_user.id # if current user is hogs owner, allow delete
           @hog.delete
-          redirect to "/users/#{@hog.user_id}/show"
+          redirect to "/users/#{@hog.user_id}"
          else
-           redirect to "/users/#{@hog.user_id}/show"
+           redirect to "/users/#{@hog.user_id}"
          end
    else
      redirect to '/login'
