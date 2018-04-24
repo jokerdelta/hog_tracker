@@ -2,7 +2,7 @@ require 'pry'
 
 class UserController < ApplicationController
 
-  get '/users/:id/show' do
+  get '/users/:id' do
     @user = User.find_by(id: params[:id])
       if  logged_in? == false || current_user.id != @user.id
     erb :'users/login'
@@ -35,7 +35,7 @@ class UserController < ApplicationController
           @user.fair_date = params[:fair_date]
           @user.save
 
-          redirect to "/users/#{@user.id}/show"
+          redirect to "/users/#{@user.id}"
       end
     else
       redirect to '/login'
@@ -46,7 +46,7 @@ end
         if logged_in? == false
         erb :'/users/create_user'
       else
-        redirect to "/users/#{@user.id}/show"
+        redirect to "/users/#{@user.id}"
       end
   end
 
@@ -55,7 +55,7 @@ end
               if @user.valid? && logged_in? == false
           @user.save
           session[:user_id] = @user.id
-          redirect to  "/users/#{@user.id}/show"
+          redirect to  "/users/#{@user.id}"
       else
           redirect to '/signup'
       end
@@ -65,7 +65,7 @@ end
     if logged_in? == false
     erb :'users/login'
     else
-      redirect to "/users/#{@user.id}/show"
+      redirect to "/users/#{@user.id}"
     end
   end
 
@@ -73,7 +73,7 @@ end
      @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect to "/users/#{@user.id}/show"
+        redirect to "/users/#{@user.id}"
       else
         redirect to '/signup'
       end
